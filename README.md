@@ -10,4 +10,17 @@ Ezy Tutors
 
 
 
-## Tutor no DB [ DOC ](docs/tutor-nodb.md)
+## Tutor DB [ DOC ](docs/tutor-db.md)
+
+
+
+# Run TESTS
+```shell
+cargo test --bin iter3 -p tutor-db
+```
+
+
+# Run SERVER
+```shell
+cargo run --bin iter3 -p tutor-db
+```

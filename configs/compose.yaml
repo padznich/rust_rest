@@ -1,0 +1,22 @@
+version: "3.8"
+networks:
+  shared-network:
+    ipam:
+      driver: default
+
+volumes:
+  local_postgres_data: {}
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: ezytutor-postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data:Z
+    env_file:
+      - postgres/service.env
+    networks:
+      - shared-network
