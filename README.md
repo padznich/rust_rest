@@ -16,11 +16,11 @@ Ezy Tutors
 
 # Run TESTS
 ```shell
-cargo test --bin iter3 -p tutor-db
+cargo test --bin iter4 -p tutor-db
 ```
 
 
 # Run SERVER
 ```shell
-cargo run --bin iter3 -p tutor-db
+cargo run --bin iter4 -p tutor-db
 ```

@@ -9,4 +9,4 @@ edition = "2021"
 
 
 [workspace]
-members = ["tutor-nodb", "tutor-db"]
+members = ["tutor-db"]
