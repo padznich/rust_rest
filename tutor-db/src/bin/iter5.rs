@@ -5,20 +5,21 @@ use std::env;
 use std::io;
 use std::sync::Mutex;
 
-#[path = "../iter4/db_access.rs"]
-mod db_access;
-#[path = "../iter4/errors.rs"]
+#[path = "../iter5/db/mod.rs"]
+mod db;
+#[path = "../iter5/errors.rs"]
 mod errors;
-#[path = "../iter4/handlers.rs"]
+#[path = "../iter5/handlers/mod.rs"]
 mod handlers;
-#[path = "../iter4/models.rs"]
+#[path = "../iter5/models/mod.rs"]
 mod models;
-#[path = "../iter4/routes.rs"]
+#[path = "../iter5/routes.rs"]
 mod routes;
-#[path = "../iter4/state.rs"]
+#[path = "../iter5/state.rs"]
 mod state;
 
 use routes::*;
+use errors::{EzyTutorError};
 use state::AppState;
 
 #[actix_rt::main]
@@ -39,8 +40,11 @@ async fn main() -> io::Result<()> {
     let app = move || {
         App::new()
             .app_data(shared_data.clone())
+            .app_data(web::JsonConfig::default()
+                .error_handler(|_err, _req| EzyTutorError::InvalidInput("Please provide valid Json input".to_string()).into()))
             .configure(general_routes)
             .configure(course_routes)
+            .configure(tutor_routes)
     };
 
     //Start HTTP server
